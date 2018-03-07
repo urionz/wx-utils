@@ -1,0 +1,6 @@
+/lib
+scripts
+packages/*/node_modules
+packages/*/lib
+packages/*/dist
+gulpfile.js

@@ -2,7 +2,7 @@ export default class {
     static instance
 
     configure = {
-        isLoding: false,
+        isLoading: false,
         pause: false,
         duration: 1000,
         errorIconPath: '',
