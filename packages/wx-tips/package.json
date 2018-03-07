@@ -1,6 +1,6 @@
 {
   "name": "wx-tips",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "wx-tips",
   "main": "lib/tips.js",
   "scripts": {
