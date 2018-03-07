@@ -116,15 +116,17 @@ export default class {
                 param[k] = (res) => {
                     if (k === 'success') {
                         // 返回响应前处理
-                        resolve(res)
                         if (this.interceptors.response.before != '') {
-                            return resolve(this.interceptors.response.before(res))
+                            resolve(this.interceptors.response.before(res))
+                        } else {
+                            resolve(res)
                         }
                     } else if (k === 'fail') {
                         // 返回响应错误前处理
-                        reject(res)
                         if (this.interceptors.response.errorCb != '') {
                             reject(this.interceptors.response.errorCb(res))
+                        } else {
+                            reject(res)
                         }
                     }
                 }
