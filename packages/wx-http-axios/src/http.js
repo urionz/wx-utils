@@ -79,6 +79,24 @@ export default class {
     post(url, data = {}, header = '') {
         return this.request('POST', url, data, header)
     }
+    options(url, data = {}, header = '') {
+        return this.request('OPTIONS', url, data, header)
+    }
+    head(url, data = {}, header = '') {
+        return this.request('HEAD', url, data, header)
+    }
+    put(url, data = {}, header = '') {
+        return this.request('PUT', url, data, header)
+    }
+    delete(url, data = {}, header = '') {
+        return this.request('DELETE', url, data, header)
+    }
+    trace(url, data = {}, header = '') {
+        return this.request('TRACE', url, data, header)
+    }
+    connect(url, data = {}, header = '') {
+        return this.request('CONNECT', url, data, header)
+    }
     request(method = '', url, data = {}, header = '') {
         data = Object.assign(this.configure.data, data)
         // 请求前处理
