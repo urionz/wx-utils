@@ -1,6 +1,6 @@
 {
   "name": "wx-http-axios",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "wx-http-axios axios http",
   "main": "lib/http.js",
   "scripts": {
