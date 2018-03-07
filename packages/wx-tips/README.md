@@ -33,9 +33,9 @@ tips.loaded()
 ### `tips getInstance方法参数配置`
 | 参数       | 说明      | 类型       | 默认值       | 必须      |
 |-----------|-----------|-----------|-------------|-------------|
-| errorIconPath | 错误提示图片路径 | String | '' | true |
-| alertIconPath | alert提示图片路径 | String | '' | true  |
-| loadingMode | loading模式 Loading对应 wx.showLoading/wx.hideLoading  NavigationBarLoading对应 wx.showNavigationBarLoading/wx.hideNavigationBarLoading | NavigationBarLoading  | String | NavigationBarLoading | false |
+| errorIconPath | 错误提示图片路径 绝对路径 | String | '' | true |
+| alertIconPath | alert提示图片路径 绝对路径 | String | '' | true  |
+| loadingMode | loading模式 Loading对应 wx.showLoading/wx.hideLoading  NavigationBarLoading对应 wx.showNavigationBarLoading/wx.hideNavigationBarLoading | String | NavigationBarLoading | false |
 | duration | 显示周期，毫秒 | int  | 1000 | false |
 
 ### `tips 实例方法api`
