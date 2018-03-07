@@ -1,0 +1,25 @@
+{
+  "name": "wx-http-axios",
+  "version": "1.0.0",
+  "description": "wx-http-axios axios http",
+  "main": "lib/http.js",
+  "scripts": {
+    "prepublish": "npm run build",
+    "build": "babel --presets es2015,stage-1 src/ --out-dir lib/ --source-maps",
+    "watch-compile": "npm run build -- --watch",
+    "watch": "npm run watch-compile",
+    "eslint": "eslint src/",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "wx-http-axios",
+    "axios",
+    "http"
+  ],
+  "author": "urionz",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/urionz/wx-utils.git"
+  },
+  "license": "MIT"
+}

@@ -1,0 +1,10 @@
+node_modules/
+log
+npm-debug.log
+lib/
+.vscode
+lerna-debug.log
+/packages/*/lib
+.DS_Store
+.idea
+/yarn.lock
