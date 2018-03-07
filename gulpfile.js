@@ -7,20 +7,20 @@
  * Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
  */
 
-const fs               =             require('fs');
-const path             =             require("path");
-const eventStream      =             require('event-stream');
-const watch            =             require("gulp-watch");
-const newer            =             require('gulp-newer');
-const lec              =             require('gulp-line-ending-corrector');
-const plumber          =             require("gulp-plumber");
-const babel            =             require("gulp-babel");
-const gutil            =             require("gulp-util");
-const through          =             require("through2");
-const gulp             =             require("gulp");
-const chalk            =             require("chalk");
-const mkdirp           =             require('mkpath');
-const clean            =             require('gulp-clean');
+const fs = require('fs');
+const path = require("path");
+const eventStream = require('event-stream');
+const watch = require("gulp-watch");
+const newer = require('gulp-newer');
+const lec = require('gulp-line-ending-corrector');
+const plumber = require("gulp-plumber");
+const babel = require("gulp-babel");
+const gutil = require("gulp-util");
+const through = require("through2");
+const gulp = require("gulp");
+const chalk = require("chalk");
+const mkdirp = require('mkpath');
+const clean = require('gulp-clean');
 
 // for docs
 // const less             =             require('gulp-less');
@@ -53,9 +53,9 @@ const filelog = (title) => {
 
 gulp.task("default", ["build"]);
 
-gulp.task('clean', () => gulp.src('packages/**/lib', {read: false}).pipe(clean()));
+gulp.task('clean', () => gulp.src('packages/**/lib', { read: false }).pipe(clean()));
 
-gulp.task('lec', () => gulp.src(bins, { base: "./" }).pipe(filelog('Bin')).pipe(lec({eolc: 'LF', encoding:'utf8'})).pipe(gulp.dest('.')));
+gulp.task('lec', () => gulp.src(bins, { base: "./" }).pipe(filelog('Bin')).pipe(lec({ eolc: 'LF', encoding: 'utf8' })).pipe(gulp.dest('.')));
 
 // gulp.task('copy', () => eventStream.concat.apply(eventStream, copyFiles.map(dir => {
 //         let dest = dir.replace('src', 'lib');
@@ -68,8 +68,8 @@ gulp.task('lec', () => gulp.src(bins, { base: "./" }).pipe(filelog('Bin')).pipe(
 
 gulp.task("build", ['lec'], () => {
     return gulp.src(scripts)
-        .pipe(plumber({ errorHandler (err) { gutil.log(err.message + '\r\n' + err.codeFrame); }}))
-        .pipe(newer({map: mapToDest}))
+        .pipe(plumber({ errorHandler(err) { gutil.log(err.message + '\r\n' + err.codeFrame); } }))
+        .pipe(newer({ map: mapToDest }))
         .pipe(filelog('Compile'))
         .pipe(babel())
         .pipe(gulp.dest(dest));
@@ -83,7 +83,7 @@ gulp.task("build", ['lec'], () => {
 // });
 gulp.task("build-watch", () => {
     return gulp.src(scripts)
-        .pipe(plumber({ errorHandler (err) { gutil.log(err.message + '\r\n' + err.codeFrame); }}))
+        .pipe(plumber({ errorHandler(err) { gutil.log(err.message + '\r\n' + err.codeFrame); } }))
         .pipe(through.obj(function (file, enc, callback) {
             file._path = file.path;
             file.path = file.path.replace(srcEx, libFragment);
@@ -96,7 +96,7 @@ gulp.task("build-watch", () => {
 });
 
 gulp.task("watch", ['build-watch'], (callback) => {
-    watch(scripts, {debounceDelay: 200}, () => gulp.start("build-watch"));
+    watch(scripts, { debounceDelay: 200 }, () => gulp.start("build-watch"));
     // watch(docs, {debounceDelay: 200}, () => gulp.start("doc-watch"));
     // watch(copyFiles, {debounceDelay: 200}, () => gulp.start("copy"));
 });
