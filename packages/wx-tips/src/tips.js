@@ -111,8 +111,8 @@ export default class {
         }
     }
 
-    alert(title, duraion = '') {
-        duraion = duraion || this.configure.duraion
+    alert(title, duration = '') {
+        duration = duration || this.configure.duration
         wx.showToast({
             title,
             image: this.configure.alertIconPath,
@@ -123,7 +123,7 @@ export default class {
         return new Promise((resolve, reject) => {
             setTimeout(() => {
                 resolve()
-            }, duraion)
+            }, duration)
         })
     }
 
@@ -139,7 +139,7 @@ export default class {
         if (hideCallback) {
             setTimeout(() => {
                 hideCallback()
-            }, duraion)
+            }, duration)
         }
     }
 
