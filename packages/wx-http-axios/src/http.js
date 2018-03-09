@@ -98,11 +98,11 @@ export default class {
         return this.request('CONNECT', url, data, header)
     }
     request(method = '', url, data = {}, header = '') {
-        data = Object.assign(this.configure.data, data)
         // 请求前处理
         if (this.interceptors.request.before != '') {
             this.interceptors.request.before(this)
         }
+        data = Object.assign(this.configure.data, data)
         method = method || this.configure.method
         url = this.configure.baseURL + url
         const param = {
