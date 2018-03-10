@@ -108,6 +108,7 @@ export default class {
             this.interceptors.request.before(this)
         }
         const cloneConf = deepClone(this.configure.data)
+        
         data = Object.assign(cloneConf, data)
         method = method || this.configure.method
         url = this.configure.baseURL + url
