@@ -1,6 +1,6 @@
 {
     "name": "urionz",
-    "version": "1.0.0",
+    "version": "1.0.7",
     "description": "urionz private npm packages",
     "main": "lib/index.js",
     "scripts": {
