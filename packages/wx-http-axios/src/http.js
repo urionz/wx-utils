@@ -116,28 +116,26 @@ export default class {
             url,
             method: method || this.configure.method,
             data,
-            header: header || this.configure.headers
+            header: header || this.configure.headers,
+            success: function(res) {},
+            fail: function(res) {},
+            complete: function(res) {}
         }
         return new Promise((resolve, reject) => {
-            ['fail', 'success', 'complete'].forEach(k => {
+            ['fail', 'success', 'complete'].forEach((k) => {
                 param[k] = (res) => {
                     if (k === 'success') {
                         // 返回响应前处理
-                        if (this.interceptors.response.before != '') {
-                            resolve(this.interceptors.response.before(res))
-                        } else {
-                            resolve(res)
-                        }
+                        if (this.interceptors.response.before != '') res = this.interceptors.response.before.call(this, res)
+                        resolve(res)
                     } else if (k === 'fail') {
                         // 返回响应错误前处理
-                        if (this.interceptors.response.errorCb != '') {
-                            reject(this.interceptors.response.errorCb(res))
-                        } else {
-                            reject(res)
-                        }
+                        if (this.interceptors.response.errorCb != '') res = this.interceptors.response.errorCb.call(this, res)
+                        reject(res)
                     }
                 }
             })
+
             RequestMQ.request(param)
         })
     }
