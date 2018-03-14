@@ -1,0 +1,22 @@
+{
+  "name": "webpack-replacer",
+  "version": "1.0.0",
+  "description": "webpack replacer",
+  "main": "lib/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/urionz/wx-utils.git"
+  },
+  "author": "urionz",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/urionz/wx-utils/issues"
+  },
+  "homepage": "https://github.com/urionz/wx-utils#readme",
+  "dependencies": {
+    "loader-utils": "^1.1.0"
+  }
+}
