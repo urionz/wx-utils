@@ -2,7 +2,7 @@
   "name": "webpack-replacer",
   "version": "1.0.3",
   "description": "webpack replacer",
-  "main": "lib/index.js",
+  "main": "lib/replacer.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
