@@ -1,6 +1,6 @@
 {
   "name": "webpack-replacer",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "webpack replacer",
   "main": "lib/index.js",
   "scripts": {
