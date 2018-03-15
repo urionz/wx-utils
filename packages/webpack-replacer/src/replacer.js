@@ -1,12 +1,11 @@
-const utils = require('loader-utils')
+import { getOptions } from 'loader-utils'
 
-module.exports = function(source) {
-    this.cacheable();
-
-    var query = utils.getOptions(this.query);
+export default function(source) {
+    this.cacheable
+    const query = getOptions(this)
     if (typeof(query.replace) === 'object') {
         for (let i = 0; i < query.replace.length; i++) {
-            var option = query.replace[i]
+            const option = query.replace[i]
 
             source = source.split(option.from).join(option.to)
         }
