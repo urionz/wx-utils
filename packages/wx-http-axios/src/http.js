@@ -33,9 +33,7 @@ const RequestMQ = {
     request(obj) {
         obj = obj || {}
         obj = (typeof (obj) === 'string') ? { url: obj } : obj
-
         this.push(obj)
-
         return this.next()
     }
 }
