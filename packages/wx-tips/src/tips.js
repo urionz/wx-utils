@@ -92,21 +92,23 @@ export default class {
         }
     }
 
-    loading(title = '加载中...', force = false) {
+    loading(title = '加载中...', type = '', force = false) {
         if (this.configure.isLoading && !force) {
             return
         }
         this.configure.isLoading = true
         if (wx.showLoading) {
-            wx[`show${this.configure.loadingMode}`]()
+            if (!type) wx[`show${this.configure.loadingMode}`]() return
+            wx[`show${type}`]()
         }
     }
 
-    loaded() {
+    loaded(type = '') {
         if (this.configure.isLoading) {
             this.configure.isLoading = false
             if (wx.hideLoading) {
-                wx[`hide${this.configure.loadingMode}`]()
+                if (!type) wx[`hide${this.configure.loadingMode}`]() return
+                wx[`hide${type}`]()
             }
         }
     }

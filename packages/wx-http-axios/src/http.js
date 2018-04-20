@@ -39,8 +39,8 @@ const RequestMQ = {
 }
 
 const deepClone = obj => {
-   const proto = Object.getPrototypeOf(obj);
-   return Object.assign({}, Object.create(proto), obj);
+    const proto = Object.getPrototypeOf(obj);
+    return Object.assign({}, Object.create(proto), obj);
 }
 
 export default class {
@@ -52,21 +52,23 @@ export default class {
     }
     interceptors = {
         request: {
-            before: '',
-            use: (configCallback, beforeCb = '') => {
-                const config = configCallback(this.configure)
-                this.configure = Object.assign(this.configure, config)
-                this.interceptors.request.before = beforeCb
+            prepare: '',
+            done: '',
+            use: (configCb, prepareCb = '', doneCb) => {
+                const config = configCb && configCb(this.configure)
+                this.configure = Object.assign(this.configure, config || {})
+                this.interceptors.request.prepare = prepareCb || ''
+                this.interceptors.request.done = doneCb || ''
             }
         },
         response: {
             before: '',
-            errorCb: '',
+            error: '',
             use: (configCb, errorCb = '', beforeCb = '') => {
-                const config = configCb(this.configure)
-                this.configure = Object.assign(this.configure, config)
-                this.interceptors.response.errorCb = errorCb
-                this.interceptors.response.before = beforeCb
+                const config = configCb && configCb(this.configure)
+                this.configure = Object.assign(this.configure, config || {})
+                this.interceptors.response.error = errorCb || ''
+                this.interceptors.response.before = beforeCb || ''
             }
         }
     }
@@ -101,16 +103,16 @@ export default class {
         return this.request('CONNECT', url, data, header)
     }
     request(method = '', url, data = {}, header = '') {
-        // 请求前处理
-        if (this.interceptors.request.before != '') {
-            this.interceptors.request.before(this)
+        // 请求前预处理
+        if (this.interceptors.request.prepare != '') {
+            this.interceptors.request.prepare(this)
         }
         const cloneConf = deepClone(this.configure.data)
-        
+
         data = Object.assign(cloneConf, data)
         method = method || this.configure.method
         url = this.configure.baseURL + url
-        const param = {
+        let param = {
             url,
             method: method || this.configure.method,
             data,
@@ -118,6 +120,10 @@ export default class {
             success: function(res) {},
             fail: function(res) {},
             complete: function(res) {}
+        }
+        // 请求前处理
+        if (this.interceptors.request.done != '') {
+            param = this.interceptors.request.done.call(this, param)
         }
         return new Promise((resolve, reject) => {
             ['fail', 'success', 'complete'].forEach((k) => {
