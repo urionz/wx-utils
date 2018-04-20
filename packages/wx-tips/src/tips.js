@@ -110,8 +110,11 @@ export default class {
         if (this.configure.isLoading) {
             this.configure.isLoading = false
             if (wx.hideLoading) {
-                if (!type) wx[`hide${this.configure.loadingMode}`]() return
-                wx[`hide${type}`]()
+                if (!type) {
+                    wx[`hide${this.configure.loadingMode}`]()
+                } else {
+                    wx[`hide${type}`]()
+                }
             }
         }
     }
